@@ -28,8 +28,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY") #'django-insecure-1shzig7cuj_q6f#1-p!p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get("DEBUG", default=0)) #True
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ") #[]
+# raw_hosts = os.environ.get("DJANGO_ALLOWED_HOSTS", "")
+# ALLOWED_HOSTS = [host.strip().strip('"').strip("'") for host in raw_hosts.split() if host.strip()]
+# if not ALLOWED_HOSTS:
+#     ALLOWED_HOSTS = []
 
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Application definition
 
@@ -152,3 +156,4 @@ REST_FRAMEWORK = {
     ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'vnd.api+json'
 }
+
